@@ -11,6 +11,8 @@ def rat (ratings):
     return round(sum(ratings) / len(ratings), 2)
 
 def filter_movies(movies):
+    """Return (title, year, average) for movies with average >= min_rating."""
+
     result = []
     for title, year, ratings in movies:
         average = rat(ratings)
@@ -19,9 +21,27 @@ def filter_movies(movies):
     return result
 
 def get_average(movie):
+    """
+    Return the average rating from a movie tuple (used as the sorting key).
+
+    Args:
+        movie: a tuple (title, year, average).
+
+    Returns:
+        float: the average rating.
+    """
     return movie[2]
 
 def display_movies(good_movies):
+    """
+    Print the movies sorted by average rating, from highest to lowest.
+
+    Args:
+        good_movies: a list of tuples (title, year, average).
+
+    Returns:
+        None: this function only prints.
+    """
     sorted_movies = sorted(good_movies, key=get_average, reverse=True)
     number = 1
     for title, year, average in sorted_movies:
