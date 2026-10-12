@@ -1,10 +1,11 @@
 alphabet = "ABCDEFGHIJKLMNOPQRSTUVWXYZ"
 
 def parse(text):
+#   """Turn a pasted text like [[1, 2], [3]] into a nested list of ints."""
     words = text.replace(" ", "").strip("[]").split("],[")
     return [[int(n)for n in word.split(",")if n] for word in words]
 def decode(transmission):
-#      """Clean, decode and analyze one transmission."""
+#  """Clean, decode and analyze one transmission."""
     cleaned = [[n for n in word if 4 <= n <= 29] for word in transmission]
     words = ["".join([alphabet[n - 4] for n in word]) for word in cleaned]
     message = " ".join(words)
